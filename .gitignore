@@ -1,0 +1,4 @@
+# ignore search results file
+search_results.txt
+# ignore log file
+log.txt
