@@ -200,6 +200,19 @@ function RunGui {
     $searchDirTB.Left = 10
     $searchDirTB.Width = 200
 
+    $searchDirBT = New-Object System.Windows.Forms.Button
+    $searchDirBT.Text = "Browse..."
+    $searchDirBT.Top = 80
+    $searchDirBT.Left = 220
+    $searchDirBT.Width = 100
+
+    $searchDirBT.Add_Click({
+        $folderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog
+        if ($folderBrowser.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $searchDirTB.Text = $folderBrowser.SelectedPath
+        }
+    })
+
     #add option to close with escape key
     $form.Add_KeyDown({
         if ($_.KeyCode -eq "Escape") {
@@ -250,6 +263,7 @@ function RunGui {
     $form.Controls.Add($searchTermTB)
     $form.Controls.Add($searchDirLB)
     $form.Controls.Add($searchDirTB)
+    $form.Controls.Add($searchDirBT)
     $form.Controls.Add($searchTypeGB)
     $searchTypeGB.Controls.Add($plainTxtTypeRB)
     $searchTypeGB.Controls.Add($pdfTxtTypeRB)
